@@ -16,5 +16,15 @@ namespace LogiwaProject
         {
             InitializeComponent();
         }
+
+        private void Form4_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnFind_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

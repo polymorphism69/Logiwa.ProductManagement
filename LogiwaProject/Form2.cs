@@ -37,9 +37,6 @@ namespace LogiwaProject
                 int productcategoryId = Convert.ToInt32(textBox4.Text);
 
 
-
-
-
                
                 connection.Open();
                 string query = "INSERT INTO tblProduct (PRODUCTNAME,PRODUCTID,PRODUCTSTOCK,PRODUCTCATEGORYID) VALUES (@PRODUCTNAME, @PRODUCTID,@PRODUCTSTOCK,@PRODUCTCATEGORYID)";
