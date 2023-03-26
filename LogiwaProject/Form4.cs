@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.Sql;
+using System.Data.SqlClient;
 
 namespace LogiwaProject
 {
@@ -16,7 +18,7 @@ namespace LogiwaProject
         {
             InitializeComponent();
         }
-
+        SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-QAB9N31;Initial Catalog=Logiwa;Integrated Security=True");
         private void Form4_Load(object sender, EventArgs e)
         {
 
@@ -24,6 +26,24 @@ namespace LogiwaProject
 
         private void btnFind_Click(object sender, EventArgs e)
         {
+            connection.Open();
+
+
+            if (txtID.Text != null)
+            {
+
+            }
+            if (txtID.Text != null)
+            {
+
+
+            }
+
+            
+
+
+
+
 
         }
     }
