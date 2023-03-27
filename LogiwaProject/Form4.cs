@@ -18,7 +18,7 @@ namespace LogiwaProject
         {
             InitializeComponent();
         }
-        SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-QAB9N31;Initial Catalog=Logiwa;Integrated Security=True");
+        
         private void Form4_Load(object sender, EventArgs e)
         {
 
@@ -26,25 +26,24 @@ namespace LogiwaProject
 
         private void btnFind_Click(object sender, EventArgs e)
         {
+          
+            string query = "SELECT * FROM tblProduct WHERE PRODUCTID=@ID";
+            SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-QAB9N31;Initial Catalog=Logiwa;Integrated Security=True");
             connection.Open();
+            SqlCommand cmd = new SqlCommand(query,connection );
+            cmd.Parameters.AddWithValue("@ID", txtID.Text);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable(); 
+            da.Fill(dt);
+            dataGridView1.DataSource = dt;
 
+            //verileri almak ve kaydetmek için  SQL Server arasında bir DataSet köprü görevi görür.
+            connection.Close();
+        }
 
-            if (txtID.Text != null)
-            {
-
-            }
-            if (txtID.Text != null)
-            {
-
-
-            }
-
-            
-
-
-
-
-
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

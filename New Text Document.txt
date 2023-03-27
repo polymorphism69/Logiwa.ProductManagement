@@ -1,0 +1,13 @@
+formdan yapılacak
+4 tnae ekran 
+ürün ekleme silme
+kategori ekleme silme
+kategori listeleme datagrid
+ürün listeleme datagrid
+
+
+4 ayrı buton 4 ayrı ekrana gidecek
+
+kategori ile ürün birbirine bağlı her ürünün kategorisi olmak zorunda
+veri tabanı ürünler kategori tablosu olacak
+üarasındaki bağlantısı ürün içinde kategori id olacakhrome

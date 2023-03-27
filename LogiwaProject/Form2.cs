@@ -57,7 +57,7 @@ namespace LogiwaProject
                 }
 
 
-
+                    
             }
 
             catch (Exception ex)

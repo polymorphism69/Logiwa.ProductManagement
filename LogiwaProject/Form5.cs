@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.Sql;
+using System.Data.SqlClient;
 
 namespace LogiwaProject
 {
@@ -15,6 +17,22 @@ namespace LogiwaProject
         public Form5()
         {
             InitializeComponent();
+        }
+
+        private void btnCategory_Click(object sender, EventArgs e)
+        {
+            SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-QAB9N31;Initial Catalog=Logiwa;Integrated Security=True");
+            connection.Open();
+            string query = "SELECT * FROM tblProduct WHERE CATEGORYID=@ID";
+        
+            connection.Open();
+            SqlCommand cmd = new SqlCommand(query, connection);
+            cmd.Parameters.AddWithValue("@ID", txtID.Text);
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            dataGridView1.DataSource = dt;
+            connection.Close();
         }
     }
 }
