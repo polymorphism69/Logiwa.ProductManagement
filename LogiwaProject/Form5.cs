@@ -27,9 +27,9 @@ namespace LogiwaProject
             {
                 SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-QAB9N31;Initial Catalog=Logiwa;Integrated Security=True");
                 connection.Open();
-                string query = "SELECT * FROM tblProduct WHERE CATEGORYID=@ID";
+                string query = "SELECT * FROM tblCategory WHERE CATEGORYID=@ID";
 
-                connection.Open();
+               
                 SqlCommand cmd = new SqlCommand(query, connection);
                 cmd.Parameters.AddWithValue("@ID", txtID.Text);
                 SqlDataAdapter da = new SqlDataAdapter(cmd);

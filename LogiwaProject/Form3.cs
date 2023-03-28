@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.Sql;
 using System.Data.SqlClient;
+using FluentValidation;
+using FluentValidation.Results;
 
 namespace LogiwaProject
 {
@@ -27,31 +29,46 @@ namespace LogiwaProject
 
             string categoryName = txtName.Text;
             int categoryId = Convert.ToInt32(txtId.Text);
-            try
+
+
+        Category category = new Category
+        {
+
+            CategoryID= categoryId,
+            CategoryName= categoryName,
+
+        };
+        CategoryValid categoryValid = new CategoryValid();
+        ValidationResult result= categoryValid.Validate(category);
+        IList<ValidationFailure> failures= new List<ValidationFailure>();
+
+
+            if (!result.IsValid)
+            {
+                foreach (ValidationFailure item in failures)
+                {
+                    MessageBox.Show(item.ErrorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
             {
                 connection.Open();
 
-                string query = "INSERT INTO tblCategory (CATEGORYNAME,CATEGORYID) VALUES (@CATEGORYNAME,@CATEGORYID)";
+                            string query = "INSERT INTO tblCategory (CATEGORYNAME,CATEGORYID) VALUES (@CATEGORYNAME,@CATEGORYID)";
 
-                SqlCommand cmd = new SqlCommand(query, connection);
-                cmd.Parameters.AddWithValue("@CATEGORYNAME", categoryName);
-                cmd.Parameters.AddWithValue("@CATEGORYID", categoryId);
-                int rows = cmd.ExecuteNonQuery();
+                             SqlCommand cmd = new SqlCommand(query, connection);
+                            cmd.Parameters.AddWithValue("@CATEGORYNAME", categoryName);
+                            cmd.Parameters.AddWithValue("@CATEGORYID", categoryId);
+                             int rows = cmd.ExecuteNonQuery();
                 if (rows > 0)
                 {
 
-                    MessageBox.Show("Category Added!");
+                MessageBox.Show("Category Added!");
                 }
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show(ex.Message);
-            }
-            finally
-            {
                 connection.Close();
+
             }
+
 
         }
 
@@ -61,10 +78,10 @@ namespace LogiwaProject
             {
                 connection.Open();
                 int categoryId = Convert.ToInt32(txtId.Text);
-               
+
                 string Query = "DELETE FROM tblCategory WHERE CATEGORYID=@CATEGORYID";
                 SqlCommand cmd = new SqlCommand(Query, connection);
-                cmd.Parameters.AddWithValue("@CATEGORYID",categoryId);
+                cmd.Parameters.AddWithValue("@CATEGORYID", categoryId);
                 int rows = cmd.ExecuteNonQuery();
                 if (rows > 0)
                 {
@@ -76,7 +93,7 @@ namespace LogiwaProject
             catch (Exception ex)
             {
 
-                MessageBox.Show("Error : " +ex);
+                MessageBox.Show("Error : " + ex);
             }
             finally
             {

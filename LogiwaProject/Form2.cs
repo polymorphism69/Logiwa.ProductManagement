@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Data.Sql;
 using FluentValidation;
 using System.Data.SqlClient;
+using FluentValidation.Results;
 
 namespace LogiwaProject
 {
@@ -20,31 +21,52 @@ namespace LogiwaProject
             InitializeComponent();
         }
         SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-QAB9N31;Initial Catalog=Logiwa;Integrated Security=True");
+
+
+
+
+
         private void button2_Click(object sender, EventArgs e)
         {
-            /*
-             AMAC:
-                textboxlar boş olmadan dataları çek ve SQL'e yazdır 
-            fluent validation kullan TAMAMDIR
 
 
-             */
-            try
+
+
+            Product product = new Product
             {
-                string productname = Convert.ToString(textBox1.Text);
-                int productId = Convert.ToInt32(textBox2.Text);
-                int inStock = Convert.ToInt32(textBox3.Text);
-                int productcategoryId = Convert.ToInt32(textBox4.Text);
+
+                ProductName = Convert.ToString(textBox1.Text),
+                ProductID = Convert.ToInt32(textBox2.Text),
+                ProductInStock = Convert.ToInt32(textBox3.Text),
+                ProductCategoryId = Convert.ToInt32(textBox4.Text)
+
+            };
 
 
-               
-                connection.Open();
+
+
+
+            ProductValid rules = new ProductValid();
+            ValidationResult result = rules.Validate(product);
+            IList<ValidationFailure> fails = result.Errors;
+
+
+            if (!result.IsValid)
+            {
+                foreach (ValidationFailure item in fails)
+                {
+                    MessageBox.Show(item.ErrorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+            }
+            else
+            {
                 string query = "INSERT INTO tblProduct (PRODUCTNAME,PRODUCTID,PRODUCTSTOCK,PRODUCTCATEGORYID) VALUES (@PRODUCTNAME, @PRODUCTID,@PRODUCTSTOCK,@PRODUCTCATEGORYID)";
                 SqlCommand cmd = new SqlCommand(query, connection);
-                cmd.Parameters.AddWithValue("@PRODUCTNAME", productname);
-                cmd.Parameters.AddWithValue("@PRODUCTID", productId);
-                cmd.Parameters.AddWithValue("@PRODUCTSTOCK", inStock);
-                cmd.Parameters.AddWithValue("@PRODUCTCATEGORYID", productcategoryId);
+                cmd.Parameters.AddWithValue("@PRODUCTNAME", product.ProductName);
+                cmd.Parameters.AddWithValue("@PRODUCTID", product.ProductID);
+                cmd.Parameters.AddWithValue("@PRODUCTSTOCK", product.ProductInStock);
+                cmd.Parameters.AddWithValue("@PRODUCTCATEGORYID", product.ProductCategoryId);
 
 
 
@@ -57,22 +79,15 @@ namespace LogiwaProject
                 }
 
 
-                    
-            }
-
-            catch (Exception ex)
-            {
-
-                MessageBox.Show("error : " + ex);
-            }
-            finally {
-
-
                 connection.Close();
-            };
+            }
+
+          
 
 
-    }
+
+
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {

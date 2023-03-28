@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Sql;
 using System.Windows.Forms;
 
 namespace LogiwaProject
@@ -56,5 +58,7 @@ namespace LogiwaProject
             Form5 form5 = new Form5();
             form5.ShowDialog();
         }
+
+       
     }
 }
