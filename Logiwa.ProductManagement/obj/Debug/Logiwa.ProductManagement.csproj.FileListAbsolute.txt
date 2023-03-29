@@ -1,0 +1,11 @@
+C:\Users\Can\Desktop\Logiwa.ProductManagement\Logiwa.ProductManagement\bin\Debug\Logiwa.ProductManagement.exe.config
+C:\Users\Can\Desktop\Logiwa.ProductManagement\Logiwa.ProductManagement\bin\Debug\Logiwa.ProductManagement.exe
+C:\Users\Can\Desktop\Logiwa.ProductManagement\Logiwa.ProductManagement\bin\Debug\Logiwa.ProductManagement.pdb
+C:\Users\Can\Desktop\Logiwa.ProductManagement\Logiwa.ProductManagement\obj\Debug\Logiwa.ProductManagement.csproj.AssemblyReference.cache
+C:\Users\Can\Desktop\Logiwa.ProductManagement\Logiwa.ProductManagement\obj\Debug\Logiwa.ProductManagement.csproj.SuggestedBindingRedirects.cache
+C:\Users\Can\Desktop\Logiwa.ProductManagement\Logiwa.ProductManagement\obj\Debug\Logiwa.ProductManagement.MainMenu.resources
+C:\Users\Can\Desktop\Logiwa.ProductManagement\Logiwa.ProductManagement\obj\Debug\Logiwa.ProductManagement.Properties.Resources.resources
+C:\Users\Can\Desktop\Logiwa.ProductManagement\Logiwa.ProductManagement\obj\Debug\Logiwa.ProductManagement.csproj.GenerateResource.cache
+C:\Users\Can\Desktop\Logiwa.ProductManagement\Logiwa.ProductManagement\obj\Debug\Logiwa.ProductManagement.csproj.CoreCompileInputs.cache
+C:\Users\Can\Desktop\Logiwa.ProductManagement\Logiwa.ProductManagement\obj\Debug\Logiwa.ProductManagement.exe
+C:\Users\Can\Desktop\Logiwa.ProductManagement\Logiwa.ProductManagement\obj\Debug\Logiwa.ProductManagement.pdb
