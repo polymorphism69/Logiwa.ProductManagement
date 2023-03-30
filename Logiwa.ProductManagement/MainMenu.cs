@@ -17,28 +17,29 @@ namespace Logiwa.ProductManagement
             InitializeComponent();
         }
 
-        private void btnAddProduct_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-            AddDeleteProduct addDeleteProduct = new AddDeleteProduct();
-            addDeleteProduct.ShowDialog();
+            ProductManagement productManagement = new ProductManagement();
+            productManagement.ShowDialog();
+
         }
 
-        private void btnAddCategory_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
-            AddDeleteCategoruy addDeleteCategoruy = new AddDeleteCategoruy();
-            addDeleteCategoruy.ShowDialog();
+            CategoryManagement categoryManagement = new CategoryManagement();
+            categoryManagement.ShowDialog();
         }
 
-        private void btnListProduct_Click(object sender, EventArgs e)
+        private void button3_Click(object sender, EventArgs e)
         {
-            ListProductsForm listProductsForm = new ListProductsForm();
-            listProductsForm.ShowDialog();
+            ListingProducts listingProducts = new ListingProducts();
+            listingProducts.ShowDialog();
         }
 
-        private void btnListCategories_Click(object sender, EventArgs e)
+        private void button4_Click(object sender, EventArgs e)
         {
-            ListCategoriesForm listCategoriesForm = new ListCategoriesForm();
-            listCategoriesForm.ShowDialog();
+            ListingCategories listingCategories = new ListingCategories();
+            listingCategories.ShowDialog(); 
         }
     }
 }

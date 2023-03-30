@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="LogiwaModelStoreContainer" CdmEntityContainer="LogiwaEntities1">
+    <EntitySetMapping Name="tblCategory">
+      <EntityTypeMapping TypeName="LogiwaModel.tblCategory">
+        <MappingFragment StoreEntitySet="tblCategory">
+          <ScalarProperty Name="CATEGORYNAME" ColumnName="CATEGORYNAME" />
+          <ScalarProperty Name="CATEGORYID" ColumnName="CATEGORYID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblProduct">
+      <EntityTypeMapping TypeName="LogiwaModel.tblProduct">
+        <MappingFragment StoreEntitySet="tblProduct">
+          <ScalarProperty Name="PRODUCTNAME" ColumnName="PRODUCTNAME" />
+          <ScalarProperty Name="PRODUCTID" ColumnName="PRODUCTID" />
+          <ScalarProperty Name="PRODUCTSTOCK" ColumnName="PRODUCTSTOCK" />
+          <ScalarProperty Name="PRODUCTCATEGORYID" ColumnName="PRODUCTCATEGORYID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

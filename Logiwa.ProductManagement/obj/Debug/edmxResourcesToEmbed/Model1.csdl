@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LogiwaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tblCategory">
+    <Key>
+      <PropertyRef Name="CATEGORYID" />
+    </Key>
+    <Property Name="CATEGORYNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CATEGORYID" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblProduct">
+    <Key>
+      <PropertyRef Name="PRODUCTID" />
+    </Key>
+    <Property Name="PRODUCTNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PRODUCTID" Type="Int32" Nullable="false" />
+    <Property Name="PRODUCTSTOCK" Type="Int32" />
+    <Property Name="PRODUCTCATEGORYID" Type="Int32" />
+  </EntityType>
+  <EntityContainer Name="LogiwaEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tblCategory" EntityType="Self.tblCategory" />
+    <EntitySet Name="tblProduct" EntityType="Self.tblProduct" />
+  </EntityContainer>
+</Schema>

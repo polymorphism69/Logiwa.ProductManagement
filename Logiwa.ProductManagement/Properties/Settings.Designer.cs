@@ -22,5 +22,15 @@ namespace Logiwa.ProductManagement.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-QAB9N31;Initial Catalog=Logiwa;Integrated Security=True")]
+        public string LogiwaConnectionString {
+            get {
+                return ((string)(this["LogiwaConnectionString"]));
+            }
+        }
     }
 }

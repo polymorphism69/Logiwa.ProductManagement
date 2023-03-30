@@ -28,61 +28,61 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnAddProduct = new System.Windows.Forms.Button();
-            this.btnAddCategory = new System.Windows.Forms.Button();
-            this.btnListProduct = new System.Windows.Forms.Button();
-            this.btnListCategories = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // btnAddProduct
+            // button1
             // 
-            this.btnAddProduct.Location = new System.Drawing.Point(21, 79);
-            this.btnAddProduct.Name = "btnAddProduct";
-            this.btnAddProduct.Size = new System.Drawing.Size(75, 37);
-            this.btnAddProduct.TabIndex = 0;
-            this.btnAddProduct.Text = "Add/Delete Product";
-            this.btnAddProduct.UseVisualStyleBackColor = true;
-            this.btnAddProduct.Click += new System.EventHandler(this.btnAddProduct_Click);
+            this.button1.Location = new System.Drawing.Point(62, 64);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 37);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "Add/Delete Products";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // btnAddCategory
+            // button2
             // 
-            this.btnAddCategory.Location = new System.Drawing.Point(102, 79);
-            this.btnAddCategory.Name = "btnAddCategory";
-            this.btnAddCategory.Size = new System.Drawing.Size(75, 37);
-            this.btnAddCategory.TabIndex = 1;
-            this.btnAddCategory.Text = "Add Delete Categories";
-            this.btnAddCategory.UseVisualStyleBackColor = true;
-            this.btnAddCategory.Click += new System.EventHandler(this.btnAddCategory_Click);
+            this.button2.Location = new System.Drawing.Point(143, 64);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 37);
+            this.button2.TabIndex = 1;
+            this.button2.Text = "Add/Delete Category";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // btnListProduct
+            // button3
             // 
-            this.btnListProduct.Location = new System.Drawing.Point(183, 79);
-            this.btnListProduct.Name = "btnListProduct";
-            this.btnListProduct.Size = new System.Drawing.Size(75, 37);
-            this.btnListProduct.TabIndex = 2;
-            this.btnListProduct.Text = "List Products";
-            this.btnListProduct.UseVisualStyleBackColor = true;
-            this.btnListProduct.Click += new System.EventHandler(this.btnListProduct_Click);
+            this.button3.Location = new System.Drawing.Point(224, 64);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 37);
+            this.button3.TabIndex = 2;
+            this.button3.Text = "List Products";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // btnListCategories
+            // button4
             // 
-            this.btnListCategories.Location = new System.Drawing.Point(264, 79);
-            this.btnListCategories.Name = "btnListCategories";
-            this.btnListCategories.Size = new System.Drawing.Size(75, 37);
-            this.btnListCategories.TabIndex = 3;
-            this.btnListCategories.Text = "List Categories";
-            this.btnListCategories.UseVisualStyleBackColor = true;
-            this.btnListCategories.Click += new System.EventHandler(this.btnListCategories_Click);
+            this.button4.Location = new System.Drawing.Point(305, 64);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 37);
+            this.button4.TabIndex = 3;
+            this.button4.Text = "List Categories";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // MainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(400, 154);
-            this.Controls.Add(this.btnListCategories);
-            this.Controls.Add(this.btnListProduct);
-            this.Controls.Add(this.btnAddCategory);
-            this.Controls.Add(this.btnAddProduct);
+            this.ClientSize = new System.Drawing.Size(472, 183);
+            this.Controls.Add(this.button4);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
             this.Name = "MainMenu";
             this.Text = "Form1";
             this.ResumeLayout(false);
@@ -91,10 +91,10 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btnAddProduct;
-        private System.Windows.Forms.Button btnAddCategory;
-        private System.Windows.Forms.Button btnListProduct;
-        private System.Windows.Forms.Button btnListCategories;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
     }
 }
 
