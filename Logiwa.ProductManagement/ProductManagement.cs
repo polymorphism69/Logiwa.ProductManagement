@@ -23,15 +23,18 @@ namespace Logiwa.ProductManagement
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            //Product ekleme tamam, logiwa entities fonksiyon içinde tanımlı olarak kalsın
-            try
+
+            if (!string.IsNullOrEmpty(textBox1.Text))
             {
-            
+                MessageBox.Show("Product ID should be empty!");
+            }
+            else
+            {
                 ProductData productData = new ProductData();
                 productData.ProductName = txtProductName.Text;
                 productData.ProductCategoryId = Convert.ToInt32(txtProductCategoryId.Text);
                 productData.InStock = Convert.ToInt32(txtProductStock.Text);
-                
+
                 LogiwaEntities1 logiwa = new LogiwaEntities1();
                 tblProduct product = new tblProduct();
                 product.PRODUCTNAME = productData.ProductName;
@@ -41,44 +44,36 @@ namespace Logiwa.ProductManagement
                 logiwa.SaveChanges();
                 MessageBox.Show("Product Added!");
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message);
-            }
-        }
 
-        private void btnDeleteProduct_Click(object sender, EventArgs e)
-        {
-            LogiwaEntities1 logiwa = new LogiwaEntities1();
-            tblProduct product = new tblProduct();
-
-            try
-            {
-                //Product Silme kısmında hata var çözülmesi gerekiyor
-
-                /*
-                 Product ID sistem tarafından otomatik olarak atandığı için şimdilik isimler üzerinden silme işlemi yapılıyor.
-                 ID üzerinden olması için List Product'un hazırlanmış olması gerekiyor
-                 */
-
-
-                string productName = txtProductName.Text;
-                var x = logiwa.tblProduct.Find(productName);
-                logiwa.tblProduct.Remove(x);
-                logiwa.SaveChanges();
-                MessageBox.Show("Product Deleted!");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error : " + ex);
-            }
 
 
         }
+
+
 
         private void button2_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                LogiwaEntities1 db = new LogiwaEntities1();
+                ProductData productData = new ProductData();
+                productData.ProductId = Convert.ToInt32(textBox1.Text);
+                int productid = productData.ProductId;
+                var x = db.tblProduct.Find(productid);
+                db.tblProduct.Remove(x);
+                db.SaveChanges();
+                MessageBox.Show("Product Deleted!");
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

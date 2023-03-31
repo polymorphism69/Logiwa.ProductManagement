@@ -11,6 +11,7 @@ namespace Logiwa.ProductManagement
         public int InStock { get; set; }
         public int ProductCategoryId { get; set; }
         public string ProductName { get; set; }
+        public int ProductId { get; set; }
     }
 
 

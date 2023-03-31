@@ -17,10 +17,10 @@ namespace Logiwa.ProductManagement
             InitializeComponent();
         }
 
+        LogiwaEntities1 logiwa = new LogiwaEntities1();
         private void btnFind_Click(object sender, EventArgs e)
         {
             
-            LogiwaEntities1 logiwa = new LogiwaEntities1();
             string productName = txtFindProduct.Text;
 
             var query = from item in logiwa.tblProduct
@@ -33,6 +33,14 @@ namespace Logiwa.ProductManagement
         private void button2_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void txtFindProduct_TextChanged(object sender, EventArgs e)
+        {
+            string arananUrun = txtFindProduct.Text;
+            var variables = from s in logiwa.tblProduct
+                            select s;
+            dataGridView1.DataSource = variables.ToList();
         }
     }
 }

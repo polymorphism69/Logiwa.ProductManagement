@@ -36,12 +36,14 @@
             this.txtProductCategoryId = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
-            this.btnDeleteProduct = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(12, 90);
+            this.btnAdd.Location = new System.Drawing.Point(12, 112);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(182, 23);
             this.btnAdd.TabIndex = 0;
@@ -99,7 +101,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(12, 148);
+            this.button2.Location = new System.Drawing.Point(15, 141);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(182, 23);
             this.button2.TabIndex = 9;
@@ -107,22 +109,40 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // btnDeleteProduct
+            // button1
             // 
-            this.btnDeleteProduct.Location = new System.Drawing.Point(12, 119);
-            this.btnDeleteProduct.Name = "btnDeleteProduct";
-            this.btnDeleteProduct.Size = new System.Drawing.Size(182, 23);
-            this.btnDeleteProduct.TabIndex = 10;
-            this.btnDeleteProduct.Text = "Delete Product";
-            this.btnDeleteProduct.UseVisualStyleBackColor = true;
-            this.btnDeleteProduct.Click += new System.EventHandler(this.btnDeleteProduct_Click);
+            this.button1.Location = new System.Drawing.Point(15, 170);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(182, 23);
+            this.button1.TabIndex = 10;
+            this.button1.Text = "Delete Product";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(94, 90);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.TabIndex = 12;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 93);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(56, 13);
+            this.label3.TabIndex = 11;
+            this.label3.Text = "Product Id";
             // 
             // ProductManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(229, 191);
-            this.Controls.Add(this.btnDeleteProduct);
+            this.ClientSize = new System.Drawing.Size(229, 200);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.txtProductCategoryId);
             this.Controls.Add(this.label4);
@@ -148,6 +168,8 @@
         private System.Windows.Forms.TextBox txtProductCategoryId;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button btnDeleteProduct;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label3;
     }
 }

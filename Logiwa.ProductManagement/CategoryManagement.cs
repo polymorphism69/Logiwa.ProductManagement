@@ -46,31 +46,10 @@ namespace Logiwa.ProductManagement
 
         private void btnDeleteCategory_Click(object sender, EventArgs e)
         {
-            try
-            {
-
-                /*
-                 Product ID sistem tarafından otomatik olarak atandığı için şimdilik isimler üzerinden silme işlemi yapılıyor.
-                 ID üzerinden olması için List Category'nin hazırlanmış olması gerekiyor
-                 */
-
-
-                /*
-                 Product Class'ı ve FluentValidation paketi yüklendikten sonra tekrar düzenleme yapılacak
-                 
-                 */
-
-                LogiwaEntities1 logiwa = new LogiwaEntities1();
-                string categoryName = txtCategoryName.Text;
-                var x = logiwa.tblProduct.Find(categoryName);
-                logiwa.tblProduct.Remove(x);
-                logiwa.SaveChanges();
-                MessageBox.Show("Category Deleted!");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error : " + ex);
-            }
+            /*
+             Delete product fonksiyonun aynısını buraya yazacağım
+             
+             */
         }
     }
 }
