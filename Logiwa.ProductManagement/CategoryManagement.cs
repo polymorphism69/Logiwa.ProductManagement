@@ -20,21 +20,36 @@ namespace Logiwa.ProductManagement
         private void btnAddCategory_Click(object sender, EventArgs e)
         {
 
-            try
-            {
-                LogiwaEntities1 db = new LogiwaEntities1();
-                tblCategory category = new tblCategory();
-                category.CATEGORYNAME = txtCategoryName.Text;
-                db.tblCategory.Add(category);
-                db.SaveChanges();
-                MessageBox.Show("Category Added!");
 
-            }
-            catch (Exception ex)
-            {
 
-                MessageBox.Show("Error : " + ex);
+
+            if (!string.IsNullOrEmpty(textBox1.Text))
+            {
+                MessageBox.Show("Category ID should be empty!");
             }
+            else
+            {
+                try
+                {
+                    LogiwaEntities1 db = new LogiwaEntities1();
+                    tblCategory category = new tblCategory();
+                    category.CATEGORYNAME = txtCategoryName.Text;
+                    db.tblCategory.Add(category);
+                    db.SaveChanges();
+                    MessageBox.Show("Category Added!");
+
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show(ex.Message);
+
+                }
+            }
+
+
+
+
 
 
         }
@@ -46,10 +61,32 @@ namespace Logiwa.ProductManagement
 
         private void btnDeleteCategory_Click(object sender, EventArgs e)
         {
+           
+
             /*
-             Delete product fonksiyonun aynısını buraya yazacağım
+             Burada bir if bloğu eğer kategori yoksa ne yapayım diye çalışacak eğer kategori yoksa hata verecek yoksa işlemleri yapacak
+            aynı şey eklemede cateogry ve product için de geçerli
+
+             
              
              */
+            
+            try
+            {
+                LogiwaEntities1 logiwa = new LogiwaEntities1();
+                int categoryId = Convert.ToInt32(textBox1.Text);
+                var x = logiwa.tblCategory.Find(categoryId);
+                logiwa.tblCategory.Remove(x);
+                logiwa.SaveChanges();
+                MessageBox.Show("Category Deleted!");
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+
+
         }
     }
 }
