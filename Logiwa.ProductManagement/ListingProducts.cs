@@ -23,7 +23,7 @@ namespace Logiwa.ProductManagement
             
             string productName = txtFindProduct.Text;
 
-            var query = from item in logiwa.tblProduct
+            var query = from item in logiwa.tblProduct.Where(x=> x.PRODUCTSTOCK > 0)
                         select new { item.PRODUCTID, item.PRODUCTNAME, item.PRODUCTCATEGORYID, item.PRODUCTSTOCK };
             dataGridView1.DataSource= query.ToList();
 

@@ -38,3 +38,9 @@ C:\Users\Can\Desktop\GitClone\Logiwa.ProductManagement\obj\Debug\Logiwa.ProductM
 C:\Users\Can\Desktop\GitClone\Logiwa.ProductManagement\obj\Debug\Logiwa.ProductManagement.csproj.CopyComplete
 C:\Users\Can\Desktop\GitClone\Logiwa.ProductManagement\obj\Debug\Logiwa.ProductManagement.exe
 C:\Users\Can\Desktop\GitClone\Logiwa.ProductManagement\obj\Debug\Logiwa.ProductManagement.pdb
+C:\Users\Can\Desktop\GitClone\Logiwa.ProductManagement\bin\Debug\FluentValidation.dll
+C:\Users\Can\Desktop\GitClone\Logiwa.ProductManagement\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\Can\Desktop\GitClone\Logiwa.ProductManagement\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\Can\Desktop\GitClone\Logiwa.ProductManagement\bin\Debug\FluentValidation.xml
+C:\Users\Can\Desktop\GitClone\Logiwa.ProductManagement\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\Can\Desktop\GitClone\Logiwa.ProductManagement\bin\Debug\System.Threading.Tasks.Extensions.xml

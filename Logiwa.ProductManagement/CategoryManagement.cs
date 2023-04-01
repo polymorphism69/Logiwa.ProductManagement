@@ -8,6 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.Sql;
+using FluentValidation.Results;
+using System.Data.SqlClient;
+using System.Data.Entity;
+using FluentValidation;
+
 namespace Logiwa.ProductManagement
 {
     public partial class CategoryManagement : Form
@@ -17,40 +22,64 @@ namespace Logiwa.ProductManagement
             InitializeComponent();
         }
 
+
         private void btnAddCategory_Click(object sender, EventArgs e)
         {
-
-
-
 
             if (!string.IsNullOrEmpty(textBox1.Text))
             {
                 MessageBox.Show("Category ID should be empty!");
             }
+            
+            
             else
             {
-                try
+
+                
+                // LogiwaEntities1 logiwaEntities1 = new LogiwaEntities1();
+
+                 CategoryData categoryData = new CategoryData();
+                 categoryData.CategoryName = txtCategoryName.Text;
+            
+
+                
+
+                    CategoryValid valid = new CategoryValid();
+                ValidationResult result = valid.Validate(categoryData);
+                IList<ValidationFailure> failures = result.Errors;
+                if (!result.IsValid)
                 {
-                    LogiwaEntities1 db = new LogiwaEntities1();
-                    tblCategory category = new tblCategory();
-                    category.CATEGORYNAME = txtCategoryName.Text;
-                    db.tblCategory.Add(category);
-                    db.SaveChanges();
-                    MessageBox.Show("Category Added!");
 
+                    foreach (ValidationFailure failure in failures)
+                    {
+                        MessageBox.Show(failure.ErrorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
-                catch (Exception ex)
+                else
                 {
+                    try
+                    {
+                        LogiwaEntities1 db = new LogiwaEntities1();
+                        tblCategory category = new tblCategory();
+                        category.CATEGORYNAME = categoryData.CategoryName;
 
-                    MessageBox.Show(ex.Message);
+                        db.tblCategory.Add(category);
+                        db.SaveChanges();
+                        MessageBox.Show("Category Added!","Info",MessageBoxButtons.OK,MessageBoxIcon.Information);
 
+                    }
+                    catch (Exception ex)
+                    {
+
+                        MessageBox.Show(ex.Message);
+
+                    }
                 }
+
+                
+               
+
             }
-
-
-
-
-
 
         }
 
@@ -61,30 +90,30 @@ namespace Logiwa.ProductManagement
 
         private void btnDeleteCategory_Click(object sender, EventArgs e)
         {
-           
 
-            /*
-             Burada bir if bloğu eğer kategori yoksa ne yapayım diye çalışacak eğer kategori yoksa hata verecek yoksa işlemleri yapacak
-            aynı şey eklemede cateogry ve product için de geçerli
 
-             
-             
-             */
+/*
+Kategori silme yaparken kontrol etme kısmı tamam, aynı işlemi bu sefer kategori adına bakarak ekleme kısmında yazacağım
+
+*/
+
+
+            LogiwaEntities1 db = new LogiwaEntities1();
+            var CategoryID = Convert.ToInt32(textBox1.Text);
+            var category = db.tblCategory.FirstOrDefault(x=> x.CATEGORYID == CategoryID);
             
-            try
-            {
-                LogiwaEntities1 logiwa = new LogiwaEntities1();
-                int categoryId = Convert.ToInt32(textBox1.Text);
-                var x = logiwa.tblCategory.Find(categoryId);
-                logiwa.tblCategory.Remove(x);
-                logiwa.SaveChanges();
-                MessageBox.Show("Category Deleted!");
-            }
-            catch (Exception ex)
-            {
 
-                MessageBox.Show(ex.Message);
+            if (category == null)
+            {
+                MessageBox.Show("This category does not exist!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            else
+            {
+                db.tblCategory.Remove(category);
+                db.SaveChanges();
+                MessageBox.Show("Success", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            
 
 
         }

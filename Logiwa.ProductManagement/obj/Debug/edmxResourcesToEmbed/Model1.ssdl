@@ -12,7 +12,7 @@
       <PropertyRef Name="PRODUCTID" />
     </Key>
     <Property Name="PRODUCTNAME" Type="varchar" MaxLength="50" />
-    <Property Name="PRODUCTID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PRODUCTID" Type="int" Nullable="false" />
     <Property Name="PRODUCTSTOCK" Type="int" />
     <Property Name="PRODUCTCATEGORYID" Type="int" />
   </EntityType>
