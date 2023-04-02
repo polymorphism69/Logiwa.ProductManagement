@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Logiwa.ProductManagement"
   ],
-  "SelectedNode": "\\Logiwa.ProductManagement.sln",
+  "SelectedNode": "\\Logiwa.ProductManagement\\ProductManagement.cs",
   "PreviewInSolutionExplorer": false
 }

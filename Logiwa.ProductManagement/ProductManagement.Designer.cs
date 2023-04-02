@@ -33,12 +33,12 @@
             this.txtProductName = new System.Windows.Forms.TextBox();
             this.txtProductStock = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtProductCategoryId = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // btnAdd
@@ -64,14 +64,14 @@
             // 
             this.txtProductName.Location = new System.Drawing.Point(94, 6);
             this.txtProductName.Name = "txtProductName";
-            this.txtProductName.Size = new System.Drawing.Size(100, 20);
+            this.txtProductName.Size = new System.Drawing.Size(121, 20);
             this.txtProductName.TabIndex = 2;
             // 
             // txtProductStock
             // 
             this.txtProductStock.Location = new System.Drawing.Point(94, 36);
             this.txtProductStock.Name = "txtProductStock";
-            this.txtProductStock.Size = new System.Drawing.Size(100, 20);
+            this.txtProductStock.Size = new System.Drawing.Size(121, 20);
             this.txtProductStock.TabIndex = 4;
             // 
             // label2
@@ -82,13 +82,6 @@
             this.label2.Size = new System.Drawing.Size(44, 13);
             this.label2.TabIndex = 3;
             this.label2.Text = "InStock";
-            // 
-            // txtProductCategoryId
-            // 
-            this.txtProductCategoryId.Location = new System.Drawing.Point(94, 64);
-            this.txtProductCategoryId.Name = "txtProductCategoryId";
-            this.txtProductCategoryId.Size = new System.Drawing.Size(100, 20);
-            this.txtProductCategoryId.TabIndex = 8;
             // 
             // label4
             // 
@@ -109,21 +102,21 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // button1
+            // btnDelete
             // 
-            this.button1.Location = new System.Drawing.Point(15, 170);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(182, 23);
-            this.button1.TabIndex = 10;
-            this.button1.Text = "Delete Product";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnDelete.Location = new System.Drawing.Point(15, 170);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(182, 23);
+            this.btnDelete.TabIndex = 10;
+            this.btnDelete.Text = "Delete Product";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.button1_Click);
             // 
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(94, 90);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.Size = new System.Drawing.Size(121, 20);
             this.textBox1.TabIndex = 12;
             // 
             // label3
@@ -135,16 +128,24 @@
             this.label3.TabIndex = 11;
             this.label3.Text = "Product Id";
             // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(94, 64);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.TabIndex = 13;
+            // 
             // ProductManagement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(229, 200);
+            this.ClientSize = new System.Drawing.Size(242, 237);
+            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.txtProductCategoryId);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtProductStock);
             this.Controls.Add(this.label2);
@@ -153,6 +154,7 @@
             this.Controls.Add(this.btnAdd);
             this.Name = "ProductManagement";
             this.Text = "ProductManagement";
+            this.Load += new System.EventHandler(this.ProductManagement_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -165,11 +167,11 @@
         private System.Windows.Forms.TextBox txtProductName;
         private System.Windows.Forms.TextBox txtProductStock;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtProductCategoryId;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }

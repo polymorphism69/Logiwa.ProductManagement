@@ -24,66 +24,61 @@ namespace Logiwa.ProductManagement
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-
-
             if (!string.IsNullOrEmpty(textBox1.Text))
             {
                 MessageBox.Show("Product ID should be empty!");
+                return;
+            }
+            LogiwaEntities1 db = new LogiwaEntities1();
+            var categoryName = comboBox1.Text;
+            var categoryId = db.tblCategory
+                .Where(c => c.CATEGORYNAME == categoryName)
+                .Select(c => c.CATEGORYID)
+                .FirstOrDefault();
+
+            ProductData productData = new ProductData();
+            productData.ProductName = txtProductName.Text;
+            productData.ProductCategoryId = categoryId;
+            productData.InStock = Convert.ToInt32(txtProductStock.Text);
+
+            // geçerlilik kontrolü ve ekleme işlemi
+            ProductValid valid = new ProductValid();
+            ValidationResult result = valid.Validate(productData);
+            IList<ValidationFailure> failures = result.Errors;
+            if (!result.IsValid)
+            {
+                foreach (ValidationFailure failure in failures)
+                {
+                    MessageBox.Show(failure.ErrorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {
-                ProductData productData = new ProductData();
-                productData.ProductName = txtProductName.Text;
-                productData.ProductCategoryId =     Convert.ToInt32(txtProductCategoryId.Text);
-                productData.InStock = Convert.ToInt32(txtProductStock.Text);
-
-
-
-
-
-                /*
-                 HATA :
-                Validation için ProductData'da stock ve id'yi string değer olarak tanımladık
-                ama bu değerler integer
-                ve bu değerleri boş geçersek uygulamada değil derleyicide hata veriyor
-                bu hatayı çözmemiz gerek
-                Durumu gelince abime anlatıp validation kısmında yardım isteyeceğim, şimdilik validaton olmadan devam edelim
-
-                 
-                 */
-
-                //ProductValid valid = new ProductValid();
-                //ValidationResult result = valid.Validate(productData);
-                //IList<ValidationFailure> failures = result.Errors;
-                //if (!result.IsValid)
-                //{
-                //    foreach (ValidationFailure failure in failures)
-                //    {
-                //        MessageBox.Show(failure.ErrorMessage,"Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
-                //    }
-                //}
-                //else
-                //{
                 LogiwaEntities1 logiwa = new LogiwaEntities1();
-                    tblProduct product = new tblProduct();
-                    product.PRODUCTNAME = productData.ProductName;
-                    product.PRODUCTCATEGORYID = productData.ProductCategoryId;
-                    product.PRODUCTSTOCK = productData.InStock;
-                    logiwa.tblProduct.Add(product);
+                var productname = productData.ProductName;
+                var product2 = logiwa.tblProduct.FirstOrDefault(p => p.PRODUCTNAME == productname);
+                if (product2 != null)
+                {
+                    MessageBox.Show("This product already exists!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+                    tblProduct product3 = new tblProduct();
+                    product3.PRODUCTNAME = productData.ProductName;
+                    product3.PRODUCTCATEGORYID = productData.ProductCategoryId;
+                    product3.PRODUCTSTOCK = productData.InStock;
+                    logiwa.tblProduct.Add(product3);
                     logiwa.SaveChanges();
-                    MessageBox.Show("Product Added!");
-                
-
-               
+                    MessageBox.Show("Product added!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
-
         }
+
 
         private void button2_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             try
@@ -99,9 +94,18 @@ namespace Logiwa.ProductManagement
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void ProductManagement_Load(object sender, EventArgs e)
+        {//valuemember id display member category namecombobox
+            LogiwaEntities1 db = new LogiwaEntities1();
+            var categories = db.tblCategory.ToList();
+            comboBox1.DataSource = categories;
+            comboBox1.ValueMember = "CATEGORYID";
+            comboBox1.DisplayMember = "CATEGORYNAME";
+
         }
     }
 }

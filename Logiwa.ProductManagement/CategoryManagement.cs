@@ -21,35 +21,21 @@ namespace Logiwa.ProductManagement
         {
             InitializeComponent();
         }
-
-
         private void btnAddCategory_Click(object sender, EventArgs e)
         {
-
             if (!string.IsNullOrEmpty(textBox1.Text))
             {
                 MessageBox.Show("Category ID should be empty!");
             }
-            
-            
             else
             {
-
-                
-                // LogiwaEntities1 logiwaEntities1 = new LogiwaEntities1();
-
-                 CategoryData categoryData = new CategoryData();
-                 categoryData.CategoryName = txtCategoryName.Text;
-            
-
-                
-
-                    CategoryValid valid = new CategoryValid();
+                CategoryData categoryData = new CategoryData();
+                categoryData.CategoryName = txtCategoryName.Text;
+                CategoryValid valid = new CategoryValid();
                 ValidationResult result = valid.Validate(categoryData);
                 IList<ValidationFailure> failures = result.Errors;
                 if (!result.IsValid)
                 {
-
                     foreach (ValidationFailure failure in failures)
                     {
                         MessageBox.Show(failure.ErrorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -57,30 +43,30 @@ namespace Logiwa.ProductManagement
                 }
                 else
                 {
-                    try
+                    LogiwaEntities1 db = new LogiwaEntities1();
+                    var categoryname = txtCategoryName.Text;
+                    var category2 = db.tblCategory.FirstOrDefault(x => x.CATEGORYNAME == categoryname);
+                    if (category2 != null)
                     {
-                        LogiwaEntities1 db = new LogiwaEntities1();
-                        tblCategory category = new tblCategory();
-                        category.CATEGORYNAME = categoryData.CategoryName;
-
-                        db.tblCategory.Add(category);
-                        db.SaveChanges();
-                        MessageBox.Show("Category Added!","Info",MessageBoxButtons.OK,MessageBoxIcon.Information);
-
+                        MessageBox.Show("This category already exists!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-                    catch (Exception ex)
+                    else
                     {
-
-                        MessageBox.Show(ex.Message);
-
+                        try
+                        {
+                            tblCategory category = new tblCategory();
+                            category.CATEGORYNAME = txtCategoryName.Text;
+                            db.tblCategory.Add(category);
+                            db.SaveChanges();
+                            MessageBox.Show("Category added!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
                     }
                 }
-
-                
-               
-
             }
-
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -90,19 +76,9 @@ namespace Logiwa.ProductManagement
 
         private void btnDeleteCategory_Click(object sender, EventArgs e)
         {
-
-
-/*
-Kategori silme yaparken kontrol etme kısmı tamam, aynı işlemi bu sefer kategori adına bakarak ekleme kısmında yazacağım
-
-*/
-
-
             LogiwaEntities1 db = new LogiwaEntities1();
             var CategoryID = Convert.ToInt32(textBox1.Text);
-            var category = db.tblCategory.FirstOrDefault(x=> x.CATEGORYID == CategoryID);
-            
-
+            var category = db.tblCategory.FirstOrDefault(x => x.CATEGORYID == CategoryID);
             if (category == null)
             {
                 MessageBox.Show("This category does not exist!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -113,9 +89,6 @@ Kategori silme yaparken kontrol etme kısmı tamam, aynı işlemi bu sefer kateg
                 db.SaveChanges();
                 MessageBox.Show("Success", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            
-
-
         }
     }
 }
