@@ -44,3 +44,10 @@ C:\Users\Can\Desktop\GitClone\Logiwa.ProductManagement\bin\Debug\System.Threadin
 C:\Users\Can\Desktop\GitClone\Logiwa.ProductManagement\bin\Debug\FluentValidation.xml
 C:\Users\Can\Desktop\GitClone\Logiwa.ProductManagement\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\Can\Desktop\GitClone\Logiwa.ProductManagement\bin\Debug\System.Threading.Tasks.Extensions.xml
+C:\Users\Can\Desktop\Logiwa.ProductManagement\Logiwa.ProductManagement\bin\Debug\FluentValidation.dll
+C:\Users\Can\Desktop\Logiwa.ProductManagement\Logiwa.ProductManagement\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\Can\Desktop\Logiwa.ProductManagement\Logiwa.ProductManagement\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\Can\Desktop\Logiwa.ProductManagement\Logiwa.ProductManagement\bin\Debug\FluentValidation.xml
+C:\Users\Can\Desktop\Logiwa.ProductManagement\Logiwa.ProductManagement\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\Can\Desktop\Logiwa.ProductManagement\Logiwa.ProductManagement\bin\Debug\System.Threading.Tasks.Extensions.xml
+C:\Users\Can\Desktop\Logiwa.ProductManagement\Logiwa.ProductManagement\obj\Debug\Logiwa.ProductManagement.ProductUpdate.resources

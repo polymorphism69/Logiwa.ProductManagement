@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Data.Sql;
 using System.Data.SqlClient;
 using FluentValidation.Results;
+using System.Data.Entity;
 
 namespace Logiwa.ProductManagement
 {
@@ -18,27 +19,20 @@ namespace Logiwa.ProductManagement
         public ProductManagement()
         {
             InitializeComponent();
-        }
-        SqlConnection connection = new SqlConnection(@"data source=DESKTOP-QAB9N31;initial catalog=Logiwa;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework");
+            
 
+        }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(textBox1.Text))
-            {
-                MessageBox.Show("Product ID should be empty!");
-                return;
-            }
-            LogiwaEntities1 db = new LogiwaEntities1();
-            var categoryName = comboBox1.Text;
-            var categoryId = db.tblCategory
-                .Where(c => c.CATEGORYNAME == categoryName)
-                .Select(c => c.CATEGORYID)
-                .FirstOrDefault();
+            
+        LogiwaEntities1 db = new LogiwaEntities1();
+            var categoryName = comboBox1.SelectedValue;
+
 
             ProductData productData = new ProductData();
             productData.ProductName = txtProductName.Text;
-            productData.ProductCategoryId = categoryId;
+            productData.ProductCategoryId = Convert.ToInt32(categoryName);
             productData.InStock = Convert.ToInt32(txtProductStock.Text);
 
             // geçerlilik kontrolü ve ekleme işlemi
@@ -70,6 +64,7 @@ namespace Logiwa.ProductManagement
                     logiwa.tblProduct.Add(product3);
                     logiwa.SaveChanges();
                     MessageBox.Show("Product added!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    label3.Text = Convert.ToString(product3.PRODUCTID);
                 }
             }
         }
@@ -81,25 +76,28 @@ namespace Logiwa.ProductManagement
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            try
-            {
-                LogiwaEntities1 db = new LogiwaEntities1();
-                ProductData productData = new ProductData();
-                productData.ProductId = Convert.ToInt32(textBox1.Text);
-                int productid = productData.ProductId;
-                var x = db.tblProduct.Find(productid);
-                db.tblProduct.Remove(x);
-                db.SaveChanges();
-                MessageBox.Show("Product Deleted!");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+
+            /*
+             Algoritma:
+            Product name'yi bul 
+            product name'den product id'sini al 
+            remove at
+             
+             */
+
+            LogiwaEntities1 db = new LogiwaEntities1();
+            ProductData productData = new ProductData();
+            productData.ProductName = txtProductName.Text;
+            string productName = productData.ProductName;
+            var x = db.tblProduct.Where(p => p.PRODUCTNAME == productName)
+                .Select(p => p.PRODUCTID)
+                .FirstOrDefault();
+            //db.tblProduct.Remove(x);
         }
 
         private void ProductManagement_Load(object sender, EventArgs e)
-        {//valuemember id display member category namecombobox
+        {
+            label3.Hide();
             LogiwaEntities1 db = new LogiwaEntities1();
             var categories = db.tblCategory.ToList();
             comboBox1.DataSource = categories;

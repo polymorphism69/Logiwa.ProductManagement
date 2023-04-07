@@ -23,50 +23,45 @@ namespace Logiwa.ProductManagement
         }
         private void btnAddCategory_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(textBox1.Text))
+
+            CategoryData categoryData = new CategoryData();
+            categoryData.CategoryName = txtCategoryName.Text;
+            CategoryValid valid = new CategoryValid();
+            ValidationResult result = valid.Validate(categoryData);
+            IList<ValidationFailure> failures = result.Errors;
+            if (!result.IsValid)
             {
-                MessageBox.Show("Category ID should be empty!");
+                foreach (ValidationFailure failure in failures)
+                {
+                    MessageBox.Show(failure.ErrorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {
-                CategoryData categoryData = new CategoryData();
-                categoryData.CategoryName = txtCategoryName.Text;
-                CategoryValid valid = new CategoryValid();
-                ValidationResult result = valid.Validate(categoryData);
-                IList<ValidationFailure> failures = result.Errors;
-                if (!result.IsValid)
+                LogiwaEntities1 db = new LogiwaEntities1();
+                var categoryname = txtCategoryName.Text;
+                var category2 = db.tblCategory.FirstOrDefault(x => x.CATEGORYNAME == categoryname);
+                if (category2 != null)
                 {
-                    foreach (ValidationFailure failure in failures)
-                    {
-                        MessageBox.Show(failure.ErrorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    MessageBox.Show("This category already exists!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {
-                    LogiwaEntities1 db = new LogiwaEntities1();
-                    var categoryname = txtCategoryName.Text;
-                    var category2 = db.tblCategory.FirstOrDefault(x => x.CATEGORYNAME == categoryname);
-                    if (category2 != null)
+                    try
                     {
-                        MessageBox.Show("This category already exists!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        tblCategory category = new tblCategory();
+                        category.CATEGORYNAME = txtCategoryName.Text;
+                        db.tblCategory.Add(category);
+                        db.SaveChanges();
+                        MessageBox.Show("Category added!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        try
-                        {
-                            tblCategory category = new tblCategory();
-                            category.CATEGORYNAME = txtCategoryName.Text;
-                            db.tblCategory.Add(category);
-                            db.SaveChanges();
-                            MessageBox.Show("Category added!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show(ex.Message);
-                        }
+                        MessageBox.Show(ex.Message);
                     }
                 }
             }
+
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -76,19 +71,15 @@ namespace Logiwa.ProductManagement
 
         private void btnDeleteCategory_Click(object sender, EventArgs e)
         {
+
             LogiwaEntities1 db = new LogiwaEntities1();
-            var CategoryID = Convert.ToInt32(textBox1.Text);
-            var category = db.tblCategory.FirstOrDefault(x => x.CATEGORYID == CategoryID);
-            if (category == null)
-            {
-                MessageBox.Show("This category does not exist!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                db.tblCategory.Remove(category);
-                db.SaveChanges();
-                MessageBox.Show("Success", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            CategoryData categoryData = new CategoryData();
+            categoryData.CategoryName = txtCategoryName.Text;
+            string categoryname = categoryData.CategoryName;
+            var x = db.tblCategory.Find(categoryname);
+            db.tblCategory.Remove(x);
+            db.SaveChanges();
+            MessageBox.Show("Category deleted!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }
