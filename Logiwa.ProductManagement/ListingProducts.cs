@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -25,19 +26,45 @@ namespace Logiwa.ProductManagement
         {
             this.Close();
         }
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dataGridView1.Columns[e.ColumnIndex].Name == "PRODUCTID")
+            if (e.RowIndex >= 0) // Sadece satırın çift tıklanması durumunda işlem yapılır
             {
-                string productName = dataGridView1.Rows[e.RowIndex].Cells["PRODUCTNAME"].Value.ToString();
+                DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
+                string productName = row.Cells["PRODUCTNAME"].Value.ToString();
 
-                ProductManagement form = new ProductManagement();
+                // Bağlantı dizesini tanımlayın ve veritabanı bağlantısını açın
+                string connectionString = "Data Source=DESKTOP-QAB9N31;Initial Catalog=Logiwa;Integrated Security=True";
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
 
-                form.txtProductName.Text = productName;
+                    // Ürünü arayın ve ProductManagement formuna geçin
+                    string query = "SELECT * FROM tblProduct WHERE PRODUCTNAME = @ProductName";
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@ProductName", productName);
+                    SqlDataReader reader = command.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        int categoryId = (int)reader["PRODUCTCATEGORYID"];
+                        bool inStock = (bool)reader["PRODUCTSTOCK"];
 
-                form.Show();
+                        // Açık olan formu kapatın
+                        this.Close();
+
+                        // ProductManagement formuna geçin
+                        ProductManagement form = new ProductManagement();
+                        form.Show();
+
+                        // txtName isimli textbox'a PRODUCTNAME değerini yazdırın
+                        form.txtProductName.Text = productName;
+                    }
+
+                    reader.Close();
+                }
             }
         }
+
 
 
 

@@ -19,14 +19,14 @@ namespace Logiwa.ProductManagement
         public ProductManagement()
         {
             InitializeComponent();
-            
+
 
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            
-        LogiwaEntities1 db = new LogiwaEntities1();
+
+            LogiwaEntities1 db = new LogiwaEntities1();
             var categoryName = comboBox1.SelectedValue;
 
 
@@ -85,6 +85,7 @@ namespace Logiwa.ProductManagement
              
              */
 
+
             LogiwaEntities1 db = new LogiwaEntities1();
             ProductData productData = new ProductData();
             productData.ProductName = txtProductName.Text;
@@ -92,7 +93,8 @@ namespace Logiwa.ProductManagement
             var x = db.tblProduct.Where(p => p.PRODUCTNAME == productName)
                 .Select(p => p.PRODUCTID)
                 .FirstOrDefault();
-            //db.tblProduct.Remove(x);
+            label3.Text = Convert.ToString(x);
+            label3.Show();
         }
 
         private void ProductManagement_Load(object sender, EventArgs e)
