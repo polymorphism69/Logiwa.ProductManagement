@@ -21,8 +21,11 @@ namespace Logiwa.ProductManagement
         {
             InitializeComponent();
         }
-        private void btnAddCategory_Click(object sender, EventArgs e)
+
+        LogiwaEntities1 db = new LogiwaEntities1();
+        public void Add()
         {
+
 
             CategoryData categoryData = new CategoryData();
             categoryData.CategoryName = txtCategoryName.Text;
@@ -38,7 +41,7 @@ namespace Logiwa.ProductManagement
             }
             else
             {
-                LogiwaEntities1 db = new LogiwaEntities1();
+
                 var categoryname = txtCategoryName.Text;
                 var category2 = db.tblCategory.FirstOrDefault(x => x.CATEGORYNAME == categoryname);
                 if (category2 != null)
@@ -63,16 +66,18 @@ namespace Logiwa.ProductManagement
             }
 
         }
+        private void btnAddCategory_Click(object sender, EventArgs e)
+        {
+            Add();
+
+        }
 
         private void button2_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
-        private void btnDeleteCategory_Click(object sender, EventArgs e)
+        public void Delete()
         {
-
-            LogiwaEntities1 db = new LogiwaEntities1();
             CategoryData categoryData = new CategoryData();
             categoryData.CategoryName = txtCategoryName.Text;
             string categoryname = categoryData.CategoryName;
@@ -80,6 +85,10 @@ namespace Logiwa.ProductManagement
             db.tblCategory.Remove(x);
             db.SaveChanges();
             MessageBox.Show("Category deleted!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+        private void btnDeleteCategory_Click(object sender, EventArgs e)
+        {
+            Delete();
         }
     }
 }

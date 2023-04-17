@@ -51,3 +51,4 @@ C:\Users\Can\Desktop\Logiwa.ProductManagement\Logiwa.ProductManagement\bin\Debug
 C:\Users\Can\Desktop\Logiwa.ProductManagement\Logiwa.ProductManagement\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\Can\Desktop\Logiwa.ProductManagement\Logiwa.ProductManagement\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\Users\Can\Desktop\Logiwa.ProductManagement\Logiwa.ProductManagement\obj\Debug\Logiwa.ProductManagement.ProductUpdate.resources
+C:\Users\Can\Desktop\Logiwa.ProductManagement\Logiwa.ProductManagement\obj\Debug\Logiwa.ProductManagement.UpdateCategory.resources

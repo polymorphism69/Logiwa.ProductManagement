@@ -67,25 +67,13 @@ namespace Logiwa.ProductManagement
                     label3.Text = Convert.ToString(product3.PRODUCTID);
                 }
             }
-        }
-
-
+        } 
         private void button2_Click(object sender, EventArgs e)
         {
             this.Close();
         }
         private void button1_Click(object sender, EventArgs e)
         {
-
-            /*
-             Algoritma:
-            Product name'yi bul 
-            product name'den product id'sini al 
-            remove at
-             
-             */
-
-
             LogiwaEntities1 db = new LogiwaEntities1();
             ProductData productData = new ProductData();
             productData.ProductName = txtProductName.Text;
@@ -94,10 +82,13 @@ namespace Logiwa.ProductManagement
                 .Select(p => p.PRODUCTID)
                 .FirstOrDefault();
             label3.Text = Convert.ToString(x);
+            var y = db.tblProduct.Find(x);
+            db.tblProduct.Remove(y);
+            db.SaveChanges();
             label3.Show();
+            MessageBox.Show("Product removed!", "Info",MessageBoxButtons.OK,MessageBoxIcon.Information);
         }
-
-        private void ProductManagement_Load(object sender, EventArgs e)
+        public void LoadMethod()
         {
             label3.Hide();
             LogiwaEntities1 db = new LogiwaEntities1();
@@ -106,6 +97,11 @@ namespace Logiwa.ProductManagement
             comboBox1.ValueMember = "CATEGORYID";
             comboBox1.DisplayMember = "CATEGORYNAME";
 
+        }
+
+        private void ProductManagement_Load(object sender, EventArgs e)
+        {
+            LoadMethod();
         }
     }
 }
